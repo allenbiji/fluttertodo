@@ -36,5 +36,33 @@ class _HomeScreenState extends State<HomeScreen>{
     });
   }
 
-  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Todo App'),
+      ),
+      body: ListView.builder(
+        itemCount: todos.length,
+        itemBuilder: (context, index){
+         return TodoItem(
+            todo: todos[index],
+            onToggle: toggleTodoCompletion,
+            onDelete: deleteTodo,
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => AddTodoScreen(onAdd: addTodo),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+        
 }
