@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     return res.status(401).json({ message: 'No token, authorization denied' });
   }
 
-  // Bearer <token>
+  
   const token = authHeader.split(' ')[1];
   if (!token) {
     return res.status(401).json({ message: 'No token, authorization denied' });
