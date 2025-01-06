@@ -29,4 +29,52 @@ class ApiService {
 
     return jsonDecode(response.body);
   }
+
+  static Future<List<dynamic>> fetchTodos(String token) async {
+    final url = Uri.parse('$BASE_URL/todos');
+    final response = await http.get(
+      url,
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return jsonDecode(response.body);
+  }
+
+  static Future<Map<String, dynamic>> createTodo(
+      String token, String title) async {
+    final url = Uri.parse('$BASE_URL/todo/createtodo');
+
+    final response = await http.post(url, headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    });
+
+    return jsonDecode(response.body);
+  }
+
+  static Future<Map<String, dynamic>> updateTodo(
+      String token, String todoId, bool isCompleted) async {
+    final url = Uri.parse('$BASE_URL/todos/$todoId');
+    final response = await http.patch(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token"
+      },
+      body: jsonEncode({"isCompleted": isCompleted}),
+    );
+    return jsonDecode(response.body);
+  }
+
+  static Future<Map<String, dynamic>> deleteTodo(
+      String token, String todoId) async {
+    final url = Uri.parse('$BASE_URL/todos/$todoId');
+    final response = await http.delete(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token"
+      },
+    );
+    return jsonDecode(response.body);
+  }
 }
