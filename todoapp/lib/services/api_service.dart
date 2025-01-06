@@ -16,4 +16,17 @@ class ApiService {
 
     return jsonDecode(response.body);
   }
+
+  static Future<Map<String, dynamic>> Login(
+      String Email, String Password) async {
+    final url = Uri.parse('$BASE_URL/auth/login');
+
+    final response = await http.post(
+      url,
+      headers: {"Content-type": "application/json"},
+      body: jsonEncode({"Email": Email, "Password": Password}),
+    );
+
+    return jsonDecode(response.body);
+  }
 }
