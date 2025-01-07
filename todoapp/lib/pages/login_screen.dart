@@ -16,8 +16,9 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isRegisterMode = false;
 
   Future<void> _submit() async {
-    final email = _emailController.text.trim();
-    final password = _passwordController.text.trim();
+    final String email = _emailController.text.trim();
+    final String password = _passwordController.text.trim();
+    print('Email: $email, Password: $password');
     if (email.isEmpty || password.isEmpty) return;
 
     try {
