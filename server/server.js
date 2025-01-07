@@ -16,9 +16,8 @@ app.use(cors());
 app.use(morgan('dev'));           
 
 
-app.use('/auth', require('./routes/auth'));
-app.use('/todos', require('./routes/todo'));
-
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/todos', require('./routes/todo'));
 
 
 const PORT = process.env.PORT || 5000;
