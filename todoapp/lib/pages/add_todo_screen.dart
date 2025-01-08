@@ -16,7 +16,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
     final text = _controller.text.trim();
     if (text.isNotEmpty) {
       widget.onAdd(text);
-      Navigator.of(context);
+      Navigator.of(context).pop();
     }
   }
 
